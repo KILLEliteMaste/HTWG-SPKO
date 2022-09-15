@@ -1,0 +1,62 @@
+// htmlnotenspiegel.stg
+delimiters "$", "$"
+
+renderclasses(classes) ::= <<
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <style type="text/css">
+        th, td { border-bottom: thin solid; padding: 4px; text-align: left; }
+        td { font-family: monospace }
+    </style>
+</head>
+<body>
+<h1>Sprachkonzepte, Aufgabe 7</h1>
+
+$classes:classTableRender(); separator="\n"$
+</body>
+</html>
+>>
+
+classTableRender(class) ::= <<
+<h2>$if(class.isInterface)$interface$else$class$endif$ $class.name$</h2>
+<table>
+    <tbody>
+    $if(class.isInterface)$
+    $renderInterface(class)$
+    $else$
+    $renderClass(class)$
+    $endif$
+    </tbody>
+</table>
+>>
+
+renderInterface(class) ::= <<
+<tr>
+    <th>Methods</th>
+</tr>
+<tr>
+    <td>
+        $class.methods:renderMethods(); separator="\n"$
+    </td>
+</tr>
+>>
+
+renderMethods(method) ::= <<
+$method.returnType$ $method.name$($method.parameterName$)<br>
+>>
+
+renderClass(class) ::= <<
+<tr>
+    <th>Interface</th>
+    <th>Methods</th>
+</tr>
+$class.interfaces:renderClassInterface(); separator="\n"$
+>>
+
+renderClassInterface(interface) ::= <<
+<tr>
+    <td>$interface.name$</td>
+    <td>$interface.methods:renderMethods(); separator="\n"$</td>
+</tr>
+>>

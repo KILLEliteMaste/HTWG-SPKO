@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/org.antlr/antlr4-runtime
+    implementation 'org.antlr:antlr4-runtime:4.9.3'
+
+    // https://mvnrepository.com/artifact/org.antlr/stringtemplate
+    //implementation 'org.antlr:stringtemplate:4.0.2'
+    // https://mvnrepository.com/artifact/org.antlr/ST4
+    implementation 'org.antlr:ST4:4.3.1'
+
+
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+}
+
+test {
+    useJUnitPlatform()
+}
